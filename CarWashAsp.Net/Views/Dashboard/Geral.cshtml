@@ -1,0 +1,97 @@
+﻿@model List<CarWashAsp.Net.Models.Agendamento>
+
+@{
+    ViewData["Title"] = "DashBord do CarWash";
+}
+
+<div class="main-content">
+    <header>
+        <h1>Agendamentos de Carwash</h1>
+        <button href="@Url.Action("AdicionarAgendamento", "Dashboard")" class="add-btn" id="newAppointmentBtn">+ Novo Agendamento</button>
+    </header>
+    <form method="get" action="@Url.Action("Geral", "Dashboard")">
+        <label for="status">Filtrar por Status:</label>
+        <select id="status" name="status">
+            <option value="">Todos</option>
+            <option value="Pendente">Pendente</option>
+            <option value="Concluido">Confirmado</option>
+        </select>
+        <button type="submit" style="margin-bottom: 20px">Filtrar</button>
+    </form>
+    <section class="table-section">
+        <table id="appointmentTable">
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Plano</th>
+                    <th>Servico</th>
+                    <th>Placa</th>
+                    <th>Data do Agendamento</th>
+                    <th>Preco</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var agendamento in Model)
+                {
+                    <tr data-id="@agendamento.Id">
+                        <td>@agendamento.NomeCliente</td>
+                        <td>@agendamento.Plano</td>
+                        <td>@agendamento.Servico</td>
+                        <td>@agendamento.PlacaCarro</td>
+                        <td>@agendamento.DataAgendamento.ToString("dd/MM/yyyy")</td>
+                        <td>@agendamento.Preco MZ</td>
+                        <td>
+                            <button href="@Url.Action("EditarAgendamento", "Dashboard", new { id = agendamento.Id})" class="edit-btn" onclick="editAppointment(this)">Editar</button>
+                            <a href="@Url.Action("RemoverAgendamento", "Dashboard", new { id = agendamento.Id })" class="delete-btn" style="text-decoration:none">Remover</a>
+                            @if(agendamento.Status == "Pendente")
+                            {
+                                <a href="@Url.Action("MarcarConcluido", "Dashboard", new { id = agendamento.Id })" class="complete-btn" style="text-decoration:none">Concluir</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+    <!-- Modal para Novo Agendamento -->
+    <div id="appointmentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Novo Agendamento</h2>
+            <form id="appointmentForm">
+                <input type="hidden" id="idAgendamento" name="idAgendamento" />
+
+                <label for="nomeCliente">Nome do Cliente:</label>
+                <input type="text" id="nomeCliente" name="nomeCliente" required>
+
+                <label for="placaCarro">Placa do Carro:</label>
+                <input type="text" id="placaCarro" name="placaCarro" required>
+
+                <label for="descricao">Descrição:</label>
+                <input type="text" id="descricao" name="descricao" required>
+
+                <label for="data">Data:</label>
+                <input type="date" id="data" name="data" required>
+
+                <label for="plano">Plano:</label>
+                <select id="plano" name="plano">
+                    <option value="Leve">Leve</option>
+                    <option value="Pesado">Pesado</option>
+                </select>
+
+                <label for="servico">Tipo de Serviço:</label>
+                <select id="servico" name="servico">
+                    <option value="Polimento">Polimento</option>
+                    <option value="LavagemSimples">LavagemSimples</option>
+                    <option value="LavagemCompleta">LavagemCompleta</option>
+                </select>
+
+                <label for="preco">Preço:</label>
+                <input type="text" id="preco" name="preco" readonly>
+
+                <button type="submit" id="submitAppointment">Agendar</button>
+            </form>
+        </div>
+    </div>
+</div>

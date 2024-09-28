@@ -1,0 +1,87 @@
+﻿@model List<CarWashAsp.Net.Models.Agendamento>
+
+@{
+    ViewData["Title"] = "Relatorio do CarWash";
+}
+
+<div class="main-content">
+    <header>
+        <h1>Relaroio de Carwash</h1>
+    </header>
+    <form method="get" action="@Url.Action("Relatorio", "Dashboard")">
+        <label for="periodo">Filtrar por Periodo:</label>
+        <select id="periodo" name="periodo">
+            <option value="">Dia</option>
+            <option value="Semana">Semana</option>
+            <option value="Mez">Mez</option>
+            <option value="Ano">Ano</option>
+        </select>
+        <button type="submit" style="margin-bottom: 20px">Filtrar</button>
+    </form>
+    <section class="table-section">
+        <table id="appointmentTable">
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Plano</th>
+                    <th>Servico</th>
+                    <th>Placa</th>
+                    <th>Data do Agendamento</th>
+                    <th>Preco</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var agendamento in Model)
+                {
+                    <tr>
+                        <td>@agendamento.NomeCliente</td>
+                        <td>@agendamento.Plano</td>
+                        <td>@agendamento.Servico</td>
+                        <td>@agendamento.PlacaCarro</td>
+                        <td>@agendamento.DataAgendamento.ToString("dd/MM/yyyy")</td>
+                        <td>@agendamento.Preco MZ</td
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <h3 style="color: red">Lucros: @ViewBag.LucroTotal MZ</h3>
+    </section>
+    <!-- Modal para Novo Agendamento -->
+    <div id="appointmentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Novo Agendamento</h2>
+            <form id="appointmentForm">
+                <label for="nomeCliente">Nome do Cliente:</label>
+                <input type="text" id="nomeCliente" name="nomeCliente" required>
+
+                <label for="placaCarro">Placa do Carro:</label>
+                <input type="text" id="placaCarro" name="placaCarro" required>
+
+                <label for="descricao">Descrição:</label>
+                <input type="text" id="descricao" name="descricao" required>
+
+                <label for="data">Data:</label>
+                <input type="date" id="data" name="data" required>
+
+                <label for="plano">Plano:</label>
+                <select id="plano" name="plano">
+                    <option value="Leve">Leve</option>
+                    <option value="Pesado">Pesado</option>
+                </select>
+
+                <label for="servico">Tipo de Serviço:</label>
+                <select id="servico" name="servico">
+                    <option value="Polimento">Polimento</option>
+                    <option value="LavagemSimples">LavagemSimples</option>
+                    <option value="LavagemCompleta">LavagemCompleta</option>
+                </select>
+
+                <label for="preco">Preço:</label>
+                <input type="text" id="preco" name="preco" readonly>
+
+                <button type="submit" id="submitAppointment">Agendar</button>
+            </form>
+        </div>
+    </div>
+</div>

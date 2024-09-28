@@ -13,12 +13,8 @@ namespace CarWashAsp.Net.Controllers
             _logger = logger;
         }
 
+        // GET: Dashboard
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
         {
             return View();
         }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CarWashAsp.Net")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2258fe153936a059619737d31fe765ef64bd8c40")]
 [assembly: System.Reflection.AssemblyProductAttribute("CarWashAsp.Net")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CarWashAsp.Net")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
