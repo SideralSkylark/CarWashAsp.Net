@@ -1,3 +1,47 @@
-﻿<h1>Log In</h1>
+﻿@{
+    ViewData["Title"] = "LogIn";
+    Layout = null;
+}
 
-<a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Geral">Logar</a>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LogIn</title>
+    <link rel="stylesheet" href="/css/logIn.css">
+</head>
+<body>
+    <div class="login-container">
+        <form asp-action="LogIn" method="POST" class="login-form">
+            <h2>Login</h2>
+
+            <div class="input-field">
+                <input type="email" id="email" name="Email" placeholder="Email" required>
+            </div>
+
+            <div class="input-field">
+                <input type="password" id="password" name="Senha" placeholder="Password" required>
+            </div>
+
+            <div class="options">
+                <label class="remember-me">
+                    <input type="checkbox" name="remember"> Lembre-se de mim
+                </label>
+                <a href="#" class="forgot-password">Esqueceu sua senha?</a>
+            </div>
+
+            <button type="submit" class="btn-signin">Log in</button>
+
+            <div class="signup-link">
+                <p>Não tem uma conta? <a href="#">Cadastro</a></p>
+            </div>
+        </form>
+
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="error-message">
+                <p>@ViewBag.ErrorMessage</p>
+            </div>
+        }
+    </div>
+</body>
+</html>

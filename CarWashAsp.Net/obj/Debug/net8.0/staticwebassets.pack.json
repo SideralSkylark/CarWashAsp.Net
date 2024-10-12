@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\css\\estilo.css"
     },
     {
+      "Id": "C:\\Users\\Sidik\\source\\repos\\CarWashAsp.Net\\CarWashAsp.Net\\wwwroot\\css\\login.css",
+      "PackagePath": "staticwebassets\\css\\login.css"
+    },
+    {
       "Id": "C:\\Users\\Sidik\\source\\repos\\CarWashAsp.Net\\CarWashAsp.Net\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },

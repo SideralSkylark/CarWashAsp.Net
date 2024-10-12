@@ -18,6 +18,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Sidik\source\repos\CarWashAsp.Net\CarWashAsp.Net
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Sidik/source/repos/CarWashAsp.Net/CarWashAsp.Net/Views/Dashboard/AbrirAdicionarAgendamento.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEFicmlyQWRpY2lvbmFyQWdlbmRhbWVudG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Sidik/source/repos/CarWashAsp.Net/CarWashAsp.Net/Views/Dashboard/AbrirEditarAgendamento.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEFicmlyRWRpdGFyQWdlbmRhbWVudG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Sidik/source/repos/CarWashAsp.Net/CarWashAsp.Net/Views/Dashboard/Geral.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEdlcmFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

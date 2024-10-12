@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "j25S7RjclQ4EuURQ7Z0Nhn15a2A576geFOFtcm5pJIk=",
+  "Hash": "d/QJs6ybvLv3yT9S5OQ6La5uGtNplPRqWjc9Z0GA0TE=",
   "Source": "CarWashAsp.Net",
   "BasePath": "_content/CarWashAsp.Net",
   "Mode": "Default",
@@ -72,6 +72,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\estilo.css"
+    },
+    {
+      "Identity": "C:\\Users\\Sidik\\source\\repos\\CarWashAsp.Net\\CarWashAsp.Net\\wwwroot\\css\\login.css",
+      "SourceId": "CarWashAsp.Net",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Sidik\\source\\repos\\CarWashAsp.Net\\CarWashAsp.Net\\wwwroot\\",
+      "BasePath": "_content/CarWashAsp.Net",
+      "RelativePath": "css/login.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\login.css"
     },
     {
       "Identity": "C:\\Users\\Sidik\\source\\repos\\CarWashAsp.Net\\CarWashAsp.Net\\wwwroot\\favicon.ico",

@@ -177,7 +177,7 @@ table {
 
 /* Modal Styles */
 .modal {
-    display: none;
+    display: block;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -244,7 +244,7 @@ form button[type="submit"] {
 
 /*Estilos para o modal de adicao e delecao*/
 .modal {
-    display: none;
+    display: block;
     position: fixed;
     z-index: 1;
     left: 0;
