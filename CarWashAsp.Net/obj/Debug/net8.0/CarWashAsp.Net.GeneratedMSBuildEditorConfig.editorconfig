@@ -9,47 +9,51 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CarWashAsp.Net
 build_property.RootNamespace = CarWashAsp.Net
-build_property.ProjectDir = C:\Users\Sidik\source\repos\CarWashAsp.Net\CarWashAsp.Net\
+build_property.ProjectDir = /home/paulo_/IdeaProjects/CarWashAsp.Net/CarWashAsp.Net/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Sidik\source\repos\CarWashAsp.Net\CarWashAsp.Net
+build_property.MSBuildProjectDirectory = /home/paulo_/IdeaProjects/CarWashAsp.Net/CarWashAsp.Net
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Sidik/source/repos/CarWashAsp.Net/CarWashAsp.Net/Views/Dashboard/Geral.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEdlcmFsLmNzaHRtbA==
+[/home/paulo_/IdeaProjects/CarWashAsp.Net/CarWashAsp.Net/Views/Dashboard/Geral.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGFzaGJvYXJkL0dlcmFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Sidik/source/repos/CarWashAsp.Net/CarWashAsp.Net/Views/Dashboard/Relatorio.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFJlbGF0b3Jpby5jc2h0bWw=
+[/home/paulo_/IdeaProjects/CarWashAsp.Net/CarWashAsp.Net/Views/Dashboard/Produtos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGFzaGJvYXJkL1Byb2R1dG9zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Sidik/source/repos/CarWashAsp.Net/CarWashAsp.Net/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+[/home/paulo_/IdeaProjects/CarWashAsp.Net/CarWashAsp.Net/Views/Dashboard/Relatorio.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGFzaGJvYXJkL1JlbGF0b3Jpby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Sidik/source/repos/CarWashAsp.Net/CarWashAsp.Net/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[/home/paulo_/IdeaProjects/CarWashAsp.Net/CarWashAsp.Net/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Sidik/source/repos/CarWashAsp.Net/CarWashAsp.Net/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+[/home/paulo_/IdeaProjects/CarWashAsp.Net/CarWashAsp.Net/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Sidik/source/repos/CarWashAsp.Net/CarWashAsp.Net/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[/home/paulo_/IdeaProjects/CarWashAsp.Net/CarWashAsp.Net/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Sidik/source/repos/CarWashAsp.Net/CarWashAsp.Net/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[/home/paulo_/IdeaProjects/CarWashAsp.Net/CarWashAsp.Net/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Sidik/source/repos/CarWashAsp.Net/CarWashAsp.Net/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+[/home/paulo_/IdeaProjects/CarWashAsp.Net/CarWashAsp.Net/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Sidik/source/repos/CarWashAsp.Net/CarWashAsp.Net/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-r1d60utjid
+[/home/paulo_/IdeaProjects/CarWashAsp.Net/CarWashAsp.Net/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/paulo_/IdeaProjects/CarWashAsp.Net/CarWashAsp.Net/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-vxd90rj9qi
