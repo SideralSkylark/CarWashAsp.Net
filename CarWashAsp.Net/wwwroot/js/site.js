@@ -7,9 +7,7 @@ let editingRow = null;
 
 // Função para abrir o modal
 newAppointmentBtn.addEventListener("click", function () {
-    editingRow = null;  // Indica que é uma nova adição
-    modal.style.display = "block";
-    appointmentForm.reset();  // Limpa o formulário ao abrir o modal
+    window.location.href = 'AbrirAdicionarAgendamento'
 });
 
 // Função para fechar o modal
@@ -80,29 +78,11 @@ appointmentForm.addEventListener("submit", function (e) {
 
 // Função para editar agendamentos
 function editAppointment(button) {
-    editingRow = button.parentElement.parentElement;
-    console.log(editingRow);
-
+    const editingRow = button.parentElement.parentElement;
     const id = editingRow.getAttribute('data-id');
-    const nomeCliente = editingRow.cells[0].textContent;
-    const plano = editingRow.cells[1].textContent;
-    const servico = editingRow.cells[2].textContent;
-    const placaCarro = editingRow.cells[3].textContent; 
-    const data = editingRow.cells[4].textContent;
-    const preco = editingRow.cells[5].textContent.replace('MZ', '').trim();
 
-
-    document.getElementById("idAgendamento").value = id;
-    document.getElementById("nomeCliente").value = nomeCliente;
-    document.getElementById("placaCarro").value = placaCarro; 
-    document.getElementById("data").value = data;
-    document.getElementById("servico").value = servico;
-    document.getElementById("plano").value = plano;
-    document.getElementById("preco").value = preco;
-
-    console.log("nome: " + nomeCliente + ", placa: " + placaCarro + ", data: " + data + ", servico: " + servico + ", plano: " + plano + ", preco: " + preco);
-
-    modal.style.display = "block";
+    // Redireciona para a página de edição, passando o ID na URL
+    window.location.href = '/Dashboard/AbrirEditarAgendamento?idAgendamento=' + id;
 }
 
 // Função para deletar agendamentos

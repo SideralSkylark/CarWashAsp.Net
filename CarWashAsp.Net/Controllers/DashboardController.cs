@@ -36,13 +36,19 @@ namespace CarWashAsp.Net.Controllers
             return View(agendamentos);
         }
 
+        [HttpGet]
+        public IActionResult AbrirAdicionarAgendamento()
+        {
+            return View();
+        }
+
         [HttpPost]
-        public IActionResult AdicionarAgendamento(string nomeCliente, string placaCarro, DateTime dataAgendamento, Plano plano, Servico servico)
+        public IActionResult AdicionarAgendamento(Agendamento agendamento)
         {
             try
             {
-                Console.WriteLine(dataAgendamento);
-                _agendamentoService.AdicionarAgendamento(nomeCliente, placaCarro, dataAgendamento, plano, servico);
+                Console.WriteLine(agendamento.DataAgendamento);
+                _agendamentoService.AdicionarAgendamento(agendamento.NomeCliente, agendamento.PlacaCarro, agendamento.DataAgendamento, agendamento.Plano, agendamento.Servico);
                 return RedirectToAction("Geral");
             }
             catch (Exception ex)
@@ -52,18 +58,32 @@ namespace CarWashAsp.Net.Controllers
             }
         }
 
-        public IActionResult EditarAgendamento(int id, string nomeCliente, string placaCarro, DateTime dataAgendamento, Plano plano, Servico servico)
+        [HttpGet]
+        public IActionResult AbrirEditarAgendamento(int idAgendamento)
+        {
+            var agendamentos = _agendamentoService.ObterAgendamentos();
+            Agendamento alvo = agendamentos.FirstOrDefault(a => a.Id == idAgendamento);
+
+            if (alvo == null)
+            {
+                return NotFound("Agendamento não encontrado.");
+            }
+
+            return View(alvo);
+        }
+
+        [HttpPost]
+        public IActionResult EditarAgendamento(Agendamento agendamento)
         {
             try
             {
-                _agendamentoService.EditarAgendamento(id, nomeCliente, placaCarro, dataAgendamento, plano, servico);
+                _agendamentoService.EditarAgendamento(agendamento.Id, agendamento.NomeCliente, agendamento.PlacaCarro, agendamento.DataAgendamento, agendamento.Plano, agendamento.Servico);
                 return RedirectToAction("Geral");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Erro ao editar agendamento. ID: {id}, Nome: {nomeCliente}, Placa: {placaCarro}, Data: {dataAgendamento}");
-                return StatusCode(500,
-                                  "Erro interno do servidor");
+                _logger.LogError(ex, "erro ao editar agendamento com plano: " + plano + ", e servico: " + servico + ", id: " + id + ", nomeCliente: " + nomeCliente + ", placa: " + placaCarro + ", data: " + dataAgendamento);
+                return StatusCode(500, "Erro interno de servidor");
             }
         }
 

@@ -1,0 +1,86 @@
+﻿@model CarWashAsp.Net.Models.Agendamento;
+
+<!-- Modal para Novo Agendamento -->
+<div id="appointmentModal" class="modal">
+    <div class="modal-content">
+        <span onclick="fecharModal() " class="close" id="closeModal">&times;</span>
+        <h2>Novo Agendamento</h2>
+        <form id="appointmentForm" asp-action="AdicionarAgendamento" asp-controller="Dashboard" method="post">
+
+            <label asp-for="NomeCliente">Nome do Cliente:</label>
+            <input type="text" asp-for="NomeCliente" required>
+
+            <label asp-for="PlacaCarro"> Placa do Carro:</label>
+            <input type="text" asp-for="PlacaCarro" required>
+
+            <label for="descricao">Descrição:</label>
+            <input type="text" id="descricao" name="descricao" required>
+
+            <label asp-for="DataAgendamento">Data:</label>
+            <input type="date" asp-for="DataAgendamento" required>
+
+            <label asp-for="Plano">Plano:</label>
+            <select id="plano" asp-for="Plano">
+                <option value="Leve">Leve</option>
+                <option value="Pesado">Pesado</option>
+            </select>
+
+            <label asp-for="Servico">Tipo de Serviço:</label>
+            <select id="servico" asp-for="Servico">
+                <option value="Polimento">Polimento</option>
+                <option value="LavagemSimples">LavagemSimples</option>
+                <option value="LavagemCompleta">LavagemCompleta</option>
+            </select>
+
+            <label asp-for="Preco">Preço:</label>
+            <input type="text" id="preco" asp-for="Preco" readonly>
+
+            <button type="submit" id="submitAppointment">Agendar</button>
+        </form>
+    </div>
+</div>
+<script>
+    function fecharModal() {
+        window.location.href = 'Geral'
+    }
+
+    // Atualizar preço ao mudar serviço ou plano
+    function updatePreco() {
+        const tipoServico = document.getElementById("servico").value;
+        const plano = document.getElementById("plano").value;
+
+        if (tipoServico && plano) {
+            fetch(`/Dashboard/ObterPreco?tipoServico=${tipoServico}&plano=${plano}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.preco) {
+                        const preco = parseFloat(data.preco);
+                        if (!isNaN(preco)) {
+                            document.getElementById("preco").value = `${preco.toFixed(2)} MZ`;
+                        } else {
+                            console.error('Preço inválido recebido:', data.preco);
+                            document.getElementById("preco").value = "Preço inválido";
+                        }
+                    } else {
+                        console.error('Preço não disponível.');
+                        document.getElementById("preco").value = "Preço não disponível";
+                    }
+                })
+                .catch(error => console.error('Erro ao buscar o preço:', error));
+        }
+    }
+
+    document.getElementById("servico").addEventListener("change", updatePreco);
+    document.getElementById("plano").addEventListener("change", updatePreco);
+
+    function formatDateToCustomFormat(dateString) {
+        const date = new Date(dateString);
+
+        const year = date.getFullYear(); // Ano completo
+        const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Mês com dois dígitos
+        const day = date.getDate().toString().padStart(2, '0'); // Dia com dois dígitos
+
+        // Retorna a data no formato "yyyy/MM/dd"
+        return `${year}/${month}/${day}`;
+    }
+</script>
