@@ -1,0 +1,36 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model CarWashAsp.Net.Models.Produto;
+
+<!-- Modal para remover quantia de Produto -->
+<div id="productModal" class="modal">
+    <div class="modal-content">
+        <span onclick="fecharModal()" class="close" id="closeModal">&times;</span>
+        <h2>Novo Produto</h2>
+        <form id="productForm" asp-action="RemoverProduto" asp-controller="Dashboard" method="post">
+            <!-- <input type="hidden" id="idProduto" name="idProduto" /> -->
+
+            <label asp-for="TipoProduto">Tipo de Produto:</label>
+            <select id="tipoProduto" asp-for="TipoProduto" required>
+                <option value="DETERGENTE">Detergente</option>
+                <option value="CERA">Cera</option>
+                <option value="SPRAY">Spray</option>
+            </select>
+
+            <label asp-for="Quantia">Quantidade:</label>
+            <input type="number" id="quantidade" asp-for="Quantia" required>
+
+            <button type="submit" id="submitProduct">Adicionar Produto</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function fecharModal() {
+        window.location.href = 'Produtos'
+    }
+</script>

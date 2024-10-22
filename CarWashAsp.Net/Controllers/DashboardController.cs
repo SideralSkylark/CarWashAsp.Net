@@ -82,7 +82,7 @@ namespace CarWashAsp.Net.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "erro ao editar agendamento com plano: " + plano + ", e servico: " + servico + ", id: " + id + ", nomeCliente: " + nomeCliente + ", placa: " + placaCarro + ", data: " + dataAgendamento);
+                _logger.LogError(ex, "erro ao editar agendamento com plano: " + agendamento.Plano + ", e servico: " + agendamento.Servico + ", id: " + agendamento.Id + ", nomeCliente: " + agendamento.NomeCliente + ", placa: " + agendamento.PlacaCarro + ", data: " + agendamento.DataAgendamento);
                 return StatusCode(500, "Erro interno de servidor");
             }
         }
@@ -95,8 +95,156 @@ namespace CarWashAsp.Net.Controllers
 
         public IActionResult MarcarConcluido(int id)
         {
+            var agendamentos = _agendamentoService.ObterAgendamentos();
+            Agendamento alvo = agendamentos.FirstOrDefault(a => a.Id == id);
+            var pordutosGastos = calcularProdutoGasto(alvo.Plano, alvo.Servico);
+            
+            deduzirProdutos(pordutosGastos);
+
             _agendamentoService.MarcarConcluido(id);
             return RedirectToAction("Geral");
+        }
+
+        private void deduzirProdutos(List<Produto> produtos)
+        {
+            foreach (var produto in produtos)
+            {
+                // Negativar a quantia para deduzir do estoque
+                produto.Quantia = -produto.Quantia;
+
+                // Chamar o método para atualizar a quantidade no banco de dados
+                _produtoService.AtualizarQuantia(produto);
+            }
+        }
+
+        private List<Produto> calcularProdutoGasto(Plano plano, Servico servico)
+        {
+            List<Produto> produtosGastos = new List<Produto>();
+
+            if (plano == Plano.Leve && servico == Servico.Polimento)
+            {
+                Produto cera = new Produto();
+                Produto spray = new Produto();
+                Produto detergente = new Produto();
+
+                cera.TipoProduto = TipoProduto.CERA;
+                spray.TipoProduto = TipoProduto.SPRAY;
+                detergente.TipoProduto = TipoProduto.DETERGENTE;
+
+                cera.Quantia = 2;
+                spray.Quantia = 2;
+                detergente.Quantia = 0;
+
+                produtosGastos.Add(cera);
+                produtosGastos.Add((spray));
+                produtosGastos.Add((detergente));
+
+                return produtosGastos;
+
+            } else if (plano == Plano.Leve && servico == Servico.LavagemSimples)
+            {
+                Produto cera = new Produto();
+                Produto spray = new Produto();
+                Produto detergente = new Produto();
+
+                cera.TipoProduto = TipoProduto.CERA;
+                spray.TipoProduto = TipoProduto.SPRAY;
+                detergente.TipoProduto = TipoProduto.DETERGENTE;
+
+                cera.Quantia = 0;
+                spray.Quantia = 0;
+                detergente.Quantia = 3;
+
+                produtosGastos.Add(cera);
+                produtosGastos.Add((spray));
+                produtosGastos.Add((detergente));
+
+                return produtosGastos;
+
+            } else if (plano == Plano.Leve && servico == Servico.LavagemCompleta)
+            {
+                Produto cera = new Produto();
+                Produto spray = new Produto();
+                Produto detergente = new Produto();
+
+                cera.TipoProduto = TipoProduto.CERA;
+                spray.TipoProduto = TipoProduto.SPRAY;
+                detergente.TipoProduto = TipoProduto.DETERGENTE;
+
+                cera.Quantia = 2;
+                spray.Quantia = 2;
+                detergente.Quantia = 3;
+
+                produtosGastos.Add(cera);
+                produtosGastos.Add((spray));
+                produtosGastos.Add((detergente));
+
+                return produtosGastos;
+
+            } else if (plano == Plano.Pesado && servico == Servico.Polimento)
+            {
+                Produto cera = new Produto();
+                Produto spray = new Produto();
+                Produto detergente = new Produto();
+
+                cera.TipoProduto = TipoProduto.CERA;
+                spray.TipoProduto = TipoProduto.SPRAY;
+                detergente.TipoProduto = TipoProduto.DETERGENTE;
+
+                cera.Quantia = 5;
+                spray.Quantia = 5;
+                detergente.Quantia = 0;
+
+                produtosGastos.Add(cera);
+                produtosGastos.Add((spray));
+                produtosGastos.Add((detergente));
+
+                return produtosGastos;
+
+            }
+            else if (plano == Plano.Pesado && servico == Servico.LavagemSimples)
+            {
+                Produto cera = new Produto();
+                Produto spray = new Produto();
+                Produto detergente = new Produto();
+
+                cera.TipoProduto = TipoProduto.CERA;
+                spray.TipoProduto = TipoProduto.SPRAY;
+                detergente.TipoProduto = TipoProduto.DETERGENTE;
+
+                cera.Quantia = 0;
+                spray.Quantia = 0;
+                detergente.Quantia = 6;
+
+                produtosGastos.Add(cera);
+                produtosGastos.Add((spray));
+                produtosGastos.Add((detergente));
+
+                return produtosGastos;
+
+            }
+            else if (plano == Plano.Pesado && servico == Servico.LavagemCompleta)
+            {
+                Produto cera = new Produto();
+                Produto spray = new Produto();
+                Produto detergente = new Produto();
+
+                cera.TipoProduto = TipoProduto.CERA;
+                spray.TipoProduto = TipoProduto.SPRAY;
+                detergente.TipoProduto = TipoProduto.DETERGENTE;
+
+                cera.Quantia = 5;
+                spray.Quantia = 5;
+                detergente.Quantia = 6;
+
+                produtosGastos.Add(cera);
+                produtosGastos.Add((spray));
+                produtosGastos.Add((detergente));
+
+                return produtosGastos;
+
+            }
+            return produtosGastos;
         }
 
         // Métodos para Produtos
@@ -108,27 +256,18 @@ namespace CarWashAsp.Net.Controllers
             return View(produtos);
         }
 
+        public IActionResult AbrirAdicionarProduto()
+        {
+            return View();
+        }
+
         [HttpPost]
-        public IActionResult AdicionarProduto(string tipoProduto, int quantidade)
+        public IActionResult AdicionarProduto(Produto produto)
         {
             try
             {
-                if (Enum.TryParse<TipoProduto>(tipoProduto, out var tipo))
-                {
-                    var produto = new Produto
-                    {
-                        TipoProduto = tipo,
-                        Quantia = quantidade
-                    };
-                    _produtoService.AdicionarProduto(produto);
-
-                    // Retorna o produto adicionado em JSON
-                    return Json(new { id = produto.Id, tipoProduto = produto.TipoProduto.ToString(), quantidade = produto.Quantia });
-                }
-                else
-                {
-                    return BadRequest("Tipo de produto inválido.");
-                }
+                _produtoService.AtualizarQuantia(produto);
+                return RedirectToAction("Produtos");
             }
             catch (Exception ex)
             {
@@ -136,51 +275,56 @@ namespace CarWashAsp.Net.Controllers
                 return StatusCode(500, "Erro interno do servidor");
             }
         }
+
+        public IActionResult AbrirEditarProduto(int id)
+        {
+            var produto = _produtoService.buscarPorId(id);
+
+            if (produto == null)
+            {
+                return NotFound("Produto não encontrado.");
+            }
+
+            return View(produto);
+        }
+
         [HttpPost]
-        public IActionResult EditarProduto(int id, string tipoProduto, int quantidade)
+        public IActionResult EditarProduto(Produto produto)
         {
             try
             {
-                if (Enum.TryParse<TipoProduto>(tipoProduto, out var tipo))
-                {
-                    var produto = new Produto
-                    {
-                        Id = id,
-                        TipoProduto = tipo,
-                        Quantia = quantidade
-                    };
-                    _produtoService.EditarProduto(produto);
-
-                    // Retorna sucesso em JSON
-                    return Json(new { success = true });
-                }
-                else
-                {
-                    return BadRequest("Tipo de produto inválido.");
-                }
+                _produtoService.EditarProduto(produto);
+                return RedirectToAction("Produtos");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Erro ao editar produto. ID: {id}, Tipo: {tipoProduto}, Quantidade: {quantidade}");
+                _logger.LogError(ex, "Erro ao adicionar o produto");
                 return StatusCode(500, "Erro interno do servidor");
             }
         }
 
+        public IActionResult AbrirRemoverProduto()
+        {
+            return View();
+        }
 
         [HttpPost]
-        public IActionResult RemoverProduto(int id)
+        public IActionResult RemoverProduto(Produto produto)
         {
-            try 
+            try
             {
-                _produtoService.RemoverProduto(id);
-                return Json(new { success = true });
+                int novaQuantia = 0 - produto.Quantia;
+                produto.Quantia = novaQuantia;
+                _produtoService.AtualizarQuantia(produto);
+                return RedirectToAction("Produtos");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Erro ao remover o produto. ID: {id}");
+                _logger.LogError(ex, "Erro ao adicionar o produto");
                 return StatusCode(500, "Erro interno do servidor");
             }
         }
+
         [HttpGet]
         public IActionResult ListarProdutos()
         {

@@ -22,6 +22,21 @@ namespace CarWashAsp.Net.Service
             _produtoRepository.AdicionarProduto(produto);
         }
 
+        public void AtualizarQuantia(Produto produto)
+        {
+            if (produto == null)
+            {
+                throw new ArgumentNullException(nameof(produto));
+            }
+
+            _produtoRepository.AtualizarQuantidadeProduto(produto);
+        }
+
+        public Produto buscarPorId(int id)
+        {
+            return _produtoRepository.ObterProdutoPorId(id);
+        }
+
         public List<Produto> ObterProdutos()
         {
             return _produtoRepository.ListarProdutos();
@@ -33,17 +48,8 @@ namespace CarWashAsp.Net.Service
             {
                 throw new ArgumentNullException(nameof(produto));
             }
-
-            var produtoExistente = _produtoRepository.ObterProdutoPorId(produto.Id);
-            if (produtoExistente == null)
-            {
-                throw new ArgumentException($"Produto com ID {produto.Id} não encontrado.");
-            }
-
-            produtoExistente.TipoProduto = produto.TipoProduto;
-            produtoExistente.Quantia = produto.Quantia;
-
-            _produtoRepository.AtualizarProduto(produtoExistente);
+            Console.WriteLine(produto.ToString());
+            _produtoRepository.AtualizarProduto(produto);
         }
 
         public void RemoverProduto(int idProduto)

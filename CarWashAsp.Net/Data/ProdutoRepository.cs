@@ -33,6 +33,61 @@ namespace CarWashAsp.Net.Data
             }
         }
 
+        public void AtualizarQuantidadeProduto(Produto produto)
+        {
+            if (produto == null)
+            {
+                throw new ArgumentNullException(nameof(produto));
+            }
+
+            using (var connection = _databaseConnection.GetConnection())
+            {
+                connection.Open();
+
+                // Passo 1: Buscar a quantidade atual do produto com base no tipoProduto
+                var querySelect = "SELECT quantia FROM produto WHERE tipo_produto = @tipo_produto";
+                int quantidadeAtual = 0;
+
+                using (var selectCmd = new MySqlCommand(querySelect, connection))
+                {
+                    selectCmd.Parameters.AddWithValue("@tipo_produto", produto.TipoProduto.ToString());
+
+                    using (var reader = selectCmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            quantidadeAtual = reader.GetInt32("quantia");  // Pega a quantidade atual do BD
+                        }
+                        else
+                        {
+                            throw new InvalidOperationException("Produto não encontrado.");
+                        }
+                    }
+                }
+
+                // Passo 2: Somar a quantidade fornecida à quantidade atual
+                int novaQuantidade = quantidadeAtual + produto.Quantia;
+
+                // Verificar se a nova quantidade será negativa
+                if (novaQuantidade < 0)
+                {
+                    throw new InvalidOperationException("A operação resultaria em uma quantidade negativa.");
+                }
+
+                // Passo 3: Atualizar a quantidade no banco de dados
+                var queryUpdate = "UPDATE produto SET quantia = @nova_quantia WHERE tipo_produto = @tipo_produto";
+
+                using (var updateCmd = new MySqlCommand(queryUpdate, connection))
+                {
+                    updateCmd.Parameters.AddWithValue("@nova_quantia", novaQuantidade);
+                    updateCmd.Parameters.AddWithValue("@tipo_produto", produto.TipoProduto.ToString());
+
+                    updateCmd.ExecuteNonQuery();  // Executa a atualização no BD
+                }
+            }
+        }
+
+
         public List<Produto> ListarProdutos()
         {
             var produtos = new List<Produto>();

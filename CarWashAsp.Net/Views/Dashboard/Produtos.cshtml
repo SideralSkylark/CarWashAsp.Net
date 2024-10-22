@@ -1,4 +1,4 @@
-List<CarWashAsp.Net.Models.Produto>
+@model List<CarWashAsp.Net.Models.Produto>
 
 @{
     ViewData["Title"] = "Dashboard do CarWash - Produtos";
@@ -7,7 +7,10 @@ List<CarWashAsp.Net.Models.Produto>
 <div class="main-content">
     <header>
         <h1>Produtos do Carwash</h1>
-        <button href="@Url.Action("AdicionarProduto", "Dashboard")" class="add-btn" id="newProductBtn">+ Novo Produto</button>
+        <div class="btn-prod">
+            <button onclick="window.location.href='@Url.Action("AbrirRemoverProduto", "Dashboard")'" class="rmQuantidade-btn" id="newProductBtn">Remover</button>
+            <button onclick="window.location.href='@Url.Action("AbrirAdicionarProduto", "Dashboard")'" class="add-btn" id="newProductBtn">+ Adicionar Produto</button>
+        </div>
     </header>
 
     <section class="table-section">
@@ -26,8 +29,7 @@ List<CarWashAsp.Net.Models.Produto>
                         <td>@produto.TipoProduto</td>
                         <td>@produto.Quantia</td>
                         <td>
-                            <button href="@Url.Action("EditarProduto", "Dashboard", new { id = produto.Id })" class="edit-btn" onclick="editProduct(this)">Editar</button>
-                            <a href="@Url.Action("RemoverProduto", "Dashboard", new { id = produto.Id })" class="delete-btn" style="text-decoration:none">Remover</a>
+                            <button class="edit-btn" onclick="editProduct(this)">Editar</button>
                         </td>
                     </tr>
                 }
@@ -35,27 +37,6 @@ List<CarWashAsp.Net.Models.Produto>
         </table>
     </section>
 
-    <!-- Modal para Novo Produto -->
-    <div id="productModal" class="modal">
-        <div class="modal-content">
-            <span class="close" id="closeModal">&times;</span>
-            <h2>Novo Produto</h2>
-            <form id="productForm">
-                <input type="hidden" id="idProduto" name="idProduto" />
-
-                <label for="tipoProduto">Tipo de Produto:</label>
-                <select id="tipoProduto" name="tipoProduto" required>
-                    <option value="DETERGENTE">Detergente</option>
-                    <option value="CERA">Cera</option>
-                    <option value="SPRAY">Spray</option>
-                </select>
-
-                <label for="quantidade">Quantidade:</label>
-                <input type="number" id="quantidade" name="quantidade" required>
-
-                <button type="submit" id="submitProduct">Adicionar Produto</button>
-            </form>
-        </div>
-    </div>
+    
 </div>
 
